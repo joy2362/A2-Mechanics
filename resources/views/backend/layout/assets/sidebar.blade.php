@@ -1,93 +1,43 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="index.html">
-            <span class="align-middle">AdminKit</span>
+        <a class="sidebar-brand" href="{{route('admin.home')}}">
+            <span class="align-middle">{{$App_Name}}</span>
         </a>
 
         <ul class="sidebar-nav">
+            <li class="sidebar-item {{ request()->routeIs('admin.home') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.home') }}">
+                    <i class="align-middle" data-feather="home"></i> <span class="align-middle">Dashboard</span>
+                </a>
+            </li>
             <li class="sidebar-header">
-                Pages
+                Setting
             </li>
 
-            <li class="sidebar-item active">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+            <li class="sidebar-item {{ request()->routeIs('admin.setting.index') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.setting.index') }}">
+                    <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Setting</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+            <li class="sidebar-item {{ request()->routeIs('admin.founder.index') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.founder.index') }}">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Founder</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
+            <li class="sidebar-item {{ request()->routeIs('admin.faq.index') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.faq.index') }}">
+                    <i class="align-middle" data-feather="help-circle"></i> <span class="align-middle">Faq</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
+            <li class="sidebar-item {{ request()->routeIs('admin.question.index') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.question.index') }}">
+                    <i class="align-middle" data-feather="help-circle"></i> <span class="align-middle">Visitor Question</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
-                </a>
-            </li>
-
-            <li class="sidebar-header">
-                Tools & Components
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Buttons</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">Typography</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
-                </a>
-            </li>
-
-            <li class="sidebar-header">
-                Plugins & Addons
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
-                </a>
-            </li>
         </ul>
     </div>
 </nav>

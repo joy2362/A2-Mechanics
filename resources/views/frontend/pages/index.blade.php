@@ -3,7 +3,7 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
     <div class="container" data-aos="zoom-out" data-aos-delay="100">
-        <h1>Welcome to <span>Tech</spa>
+        <h1>Welcome to <span>{{$App_Name}}</spa>
         </h1>
         <h2>We Are Your Partners in Software Development</h2>
         <div class="d-flex">
@@ -88,16 +88,10 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span> <!-- removed background color -->
                 <span class="sr-only">Next</span>
             </a>
-
-
-
         </div>
         <div style="float: right; padding: 10px 10px;"><a href="our_works.html" >Read More</a></div>
     </div>
-
 </section>
-
-
 
 <section id="about" class="section-bg">
     <div class="container px-4">
@@ -109,30 +103,15 @@
         <div class="row">
             <div class="col-md-6 " data-aos="zoom-out" data-aos-delay="100">
                 <!-- rounded corner img -->
-                <img src="{{asset('frontend/img/web.jpg')}}" class="cap img-fluid rounded">
+                <img src="{{$About_Us_Image}}" class="cap img-fluid rounded">
             </div>
 
             <!-- showing about content on click in home page -->
             <div class="col-md-6 py-3">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. </p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                <p>{!! $About_Us !!}
                     <!-- change curson icon -->
-                    <span class="text-primary font-weight-bold"  id="showAbout">Read More...</span>
                 </p>
-                <p id="aboutContent" style="display: none;">
-
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    <br> <a  href="./pages/about.html" class="text-primary font-weight-bold"> See More</a>
-                </p>
+                <a  href="{{route('about')}}" class="text-primary font-weight-bold"> Read More</a>
             </div>
         </div>
     </div>
@@ -258,24 +237,24 @@
                         <div class="info-box mb-4 cap">
                             <i class="bx bx-map"></i>
                             <h3>Our Address</h3>
-                            <p>A108 Adam Street, New York, NY 535022</p><br>
+                            <p>{{ $Address }}</p><br>
                             <i class="bx bx-envelope "></i>
                             <h3>Email Us</h3>
-                            <p>contact@tech.com</p><br>
+                            <p>{{$App_Email}}</p><br>
                             <i class="bx bx-phone-call "></i>
                             <h3>Call Us</h3>
-                            <p>+1 5589 55488 55</p>
+                            <p>{{$App_Mobile}}</p>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="col-md-8 px-5 py-4 align-items-center d-flex" data-aos="fade-up" data-aos-delay="100">
-                <form method="post" action="">
+                <form method="post" action="{{route('feedback.create')}}">
+                    @csrf
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <input type="text" name="fullname" class="form-control" placeholder="fullname" id="name">
+                                <input type="text" name="name" class="form-control" placeholder="Full name" id="name">
                                 <p id="error"></p>
                             </div>
                         </div>
@@ -290,7 +269,7 @@
                         <input type="text" name="subject" class="form-control" placeholder="Subject" id="subject">
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" name="msg" style="height: 150px;" id="msg"></textarea>
+                        <textarea class="form-control" name="message" style="height: 150px;" id="message"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" name="submit" class="btn btn-primary" id="submit" >

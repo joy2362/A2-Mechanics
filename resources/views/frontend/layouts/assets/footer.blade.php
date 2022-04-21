@@ -3,22 +3,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h3>Tech<span>.</span></h3>
-                    <p>
-                        Lorem ipsum dolor sit amet,
-                        proident, sunt in <br>
-                        mollit anim id est laborum. <br>
-                        United States <br><br>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
+                    @if($App_logo)
+                        <a href="{{route('index')}}" class="logo"><img src="{{$App_logo}}" width="100px" height="100px" alt="{{$App_Name}}"></a>
+                    @else
+                        <h3>{{$App_Name}}</h3>
+                    @endif
+                    <p class="mt-2">
+                        {{$Footer_Description }}
+                         <br><br>
+                        <strong>Phone:</strong> {{$App_Mobile}}<br>
+                        <strong>Email:</strong> {{$App_Email}}<br>
                     </p>
                 </div>
 
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="./index.html">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="./pages/about.html">About us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('index')}}">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('about')}}">About us</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="./pages/terms_of_service.html">Terms of service</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="./pages/contact.html">Contact</a></li>
                     </ul>
@@ -37,15 +39,23 @@
 
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Our Social Networks</h4>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+                    <p> {{$Social_Network_Description }} </p>
 
                     <!-- displaying social icons in flex -->
                     <div class="social-links mt-3">
-                        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        @if($Facebook)
+                            <a href="{{$Facebook}}" class="facebook"><i class="bx bxl-facebook"></i></a>
+                        @endif
+                        @if($Twitter)
+                            <a href="{{$Twitter}}" class="twitter"><i class="bx bxl-twitter"></i></a>
+                        @endif
+
+                        @if($Linkedin)
+                            <a href="{{$Linkedin}}" class="instagram"><i class="bx bxl-instagram"></i></a>
+                        @endif
+                        @if($Instagram)
+                            <a href="{{$Instagram}}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -14,23 +14,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 offset-md-4 col-10 offset-1">
-                    <form>
+                    <form method="post" action="{{route('problem.create')}}" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group">
-                            <label>Fullname</label>
-                            <input type="text" name="fname"  class="form-control">
+                            <label for="name">Full name</label>
+                            <input type="text" id="name" name="name"  class="form-control">
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" name="email"  class="form-control">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email"  class="form-control">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label>Question/Problem</label>
-                            <!-- making textarea bigger -->
-                            <textarea class="form-control" name="question" rows="5"></textarea>
+                            <label for="question">Question/Problem</label>
+                            <textarea class="form-control" id="question" name="question" rows="5"></textarea>
+                            @error('question')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label>File</label>
-                            <input type="file" name="photo" class="form-control">
+                            <label for="">Attachment</label>
+                            <input type="file" id="attachment" name="attachment" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="submit" name="Submit" class="btn btn-block btn-primary">
@@ -38,18 +53,13 @@
                     </form>
                 </div>
             </div>
+            @foreach($faq as $row)
             <div>
-                <h4 class="font-weight-bold">How to apply padding?</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                <h4 class="font-weight-bold">{{$row->question}}</h4>
+                <p>{{$row->answer}}</p>
             </div>
-            <div>
-                <h4 class="font-weight-bold">How to apply Jquery</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-            </div>
+            @endforeach
+            {!! $faq->links() !!}
         </div>
     </section>
 @endsection

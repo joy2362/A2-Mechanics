@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{asset('backend/img/icons/icon-48x48.png')}}" />
 
-    <title>Sign In</title>
+    <title>Admin Login</title>
 
     <link href="{{ asset('backend/css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">

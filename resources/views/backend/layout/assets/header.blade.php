@@ -3,15 +3,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @yield('meta')
-<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-<meta name="author" content="AdminKit">
-<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
+<link rel="shortcut icon" href="{{$App_logo}}" />
+@yield('title')
 
-<link rel="shortcut icon" href="{{asset('backend/img/icons/icon-48x48.png')}}" />
-
-
-<title>Admin</title>
 <link href="{{ asset('backend/css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('backend/css/app.css') }}" rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">

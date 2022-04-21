@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\PageController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -14,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend/pages/index');
-});
+Route::get('/',[PageController::class,'index'])->name('index');
+Route::get('/about',[PageController::class,'about'])->name('about');
+Route::get('/problem',[PageController::class,'problem'])->name('problem');
+Route::get('/contact-us',[PageController::class,'contact'])->name('contact');
+Route::post('/problem/create',[PageController::class,'problem_create'])->name('problem.create');
+Route::post('/feedback/create',[PageController::class,'feedback_create'])->name('feedback.create');
 
-Route::get('/about', function () {
-    return view('frontend/pages/about');
-});
 
 Route::get('/blog', function () {
     return view('frontend/pages/blog');
@@ -28,15 +29,4 @@ Route::get('/blog', function () {
 
 Route::get('/blogs', function () {
     return view('frontend/pages/blogs');
-});
-
-Route::get('/admin', function () {
-    return view('backend/pages/dashboard');
-});
-
-
-//artisan
-Route::get('/storage/link',  function (){
-    Artisan::call('storage:link');
-    dd("storage link successful");
 });

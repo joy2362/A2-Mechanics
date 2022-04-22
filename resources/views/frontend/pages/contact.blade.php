@@ -58,7 +58,7 @@
                             <textarea class="form-control" name="message" style="height: 150px;" id="msg"></textarea>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="submit" class="btn btn-primary" id="submit" >
+                            <input type="submit" value="Send" class="btn btn-primary" id="submit" >
                         </div>
                     </form>
                 </div>

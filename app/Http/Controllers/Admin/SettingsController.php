@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index(){
         $app_name = Settings::where('name',Settings::APP_NAME)->first();
         $app_email = Settings::select('value')->where('name',Settings::APP_EMAIL)->first();
@@ -39,6 +42,10 @@ class SettingsController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function change_logo(Request $request){
         $request->validate([
             'image' => 'required',
@@ -58,6 +65,10 @@ class SettingsController extends Controller
         return Redirect()->back()->with($notification);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function change_about_us_image(Request $request){
         $request->validate([
             'aboutUs' => 'required',
@@ -78,6 +89,10 @@ class SettingsController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request){
         $request->validate([
             'name' => 'required',

@@ -3,23 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Faq;
-use Carbon\Carbon;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
-class FaqController extends Controller
+class CategoryController extends Controller
 {
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Exception
-     */
     public function index(Request $request){
         if ($request->ajax()){
-            $faq = Faq::whereStatus(Faq::ACTIVE)->get();
+            $faq = Category::all();
             $data = DataTables::of($faq)
                 ->addIndexColumn()
                 ->addColumn('actions',function($row){
@@ -31,7 +24,7 @@ class FaqController extends Controller
                 ->make(true);
             return $data;
         }
-        return view('backend.pages.faq.index');
+        return view('backend.pages.category.index');
     }
 
     /**
@@ -42,8 +35,7 @@ class FaqController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'question' => 'required|max:191',
-            'answer' => 'required',
+            'name' => 'required|max:191|unique:categories,name',
         ]);
 
         if ($validator->fails()){
@@ -52,37 +44,27 @@ class FaqController extends Controller
                 'errors' => $validator->messages()
             ]);
         }
-        $faq = new Faq();
-        $faq->question = $request->question;
-        $faq->answer = $request->answer;
-        $faq->save();
+        $category = new Category();
+        $category->name = $request->name;
+        $category->save();
 
         return response()->json([
             'status' => 200,
-            'message' => "Faq Added Successfully"
+            'message' => "Category Added Successfully"
         ]);
     }
 
-    /**
-     * @param Faq $faq
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function edit(Faq $faq){
+    public function edit(Category $category){
         return response()->json([
             'status' => 200,
-            'faq' => $faq
+            'category' => $category
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     */
-    public function update(Request $request, Faq $faq)
+    public function update(Request $request, Category $category)
     {
         $validator = Validator::make($request->all(),[
-            'question' => 'required|max:191',
-            'answer' => 'required',
+            'name' => 'required|max:191|unique:categories,name,' . $category->id,
         ]);
 
         if ($validator->fails()){
@@ -92,29 +74,22 @@ class FaqController extends Controller
             ]);
         }
 
-        $faq->question = $request->question;
-        $faq->answer = $request->answer;
-        $faq->save();
+        $category->name = $request->name;
+        $category->save();
 
         return response()->json([
             'status' => 200,
-            'message' => "Faq Updated Successfully"
+            'message' => "Category Updated Successfully"
         ]);
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     */
-    public function destroy(Faq $faq)
+
+    public function destroy(Category $category)
     {
-        $faq->delete();
+        $category->delete();
 
         return response()->json([
             'status' => 200,
-            'message' => "Faq Deleted successfully"
+            'message' => "Category Deleted successfully"
         ]);
     }
-
 }

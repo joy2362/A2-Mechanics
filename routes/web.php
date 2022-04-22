@@ -19,6 +19,10 @@ Route::get('/',[PageController::class,'index'])->name('index');
 Route::get('/about',[PageController::class,'about'])->name('about');
 Route::get('/problem',[PageController::class,'problem'])->name('problem');
 Route::get('/contact-us',[PageController::class,'contact'])->name('contact');
+Route::get('/team',[PageController::class,'team'])->name('team');
+Route::get('/work',[PageController::class,'work'])->name('work');
+Route::get('/work/{work}',[PageController::class,'single_work'])->name('single.work');
+
 Route::post('/problem/create',[PageController::class,'problem_create'])->name('problem.create');
 Route::post('/feedback/create',[PageController::class,'feedback_create'])->name('feedback.create');
 

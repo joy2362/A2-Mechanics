@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class FounderController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index(){
         $founder_name = Settings::where('name',Settings::FOUNDER_NAME)->first();
         $founder_designation = Settings::select('value')->where('name',Settings::FOUNDER_DESIGNATION)->first();
@@ -21,6 +24,10 @@ class FounderController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function change_logo(Request $request){
         $request->validate([
             'image' => 'required',
@@ -40,6 +47,10 @@ class FounderController extends Controller
         return Redirect()->back()->with($notification);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request){
         $request->validate([
             'name' => 'required',

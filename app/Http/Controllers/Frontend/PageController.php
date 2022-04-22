@@ -4,14 +4,18 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
+use App\Models\Team;
 use App\Models\VisitorFeedback;
+use App\Models\Work;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
 
     public function index(){
-        return view('frontend.pages.index');
+        $work = Work::all();
+        $team = Team::inRandomOrder()->limit(3)->get();
+        return view('frontend.pages.index',['team'=>$team,'work'=>$work]);
     }
     public function about(){
         return view('frontend.pages.about');
@@ -24,6 +28,20 @@ class PageController extends Controller
 
     public function contact(){
         return view('frontend.pages.contact');
+    }
+
+    public function team(){
+        $team = Team::all();
+        return view('frontend.pages.team',['team'=>$team]);
+    }
+
+    public function work(){
+        $work = Work::all();
+        return view('frontend.pages.work',['work'=>$work]);
+    }
+
+    public function single_work(Work $work){
+        return view('frontend.pages.single-work',['work'=>$work]);
     }
 
     public function problem_create(Request $request){
@@ -54,7 +72,6 @@ class PageController extends Controller
         return Redirect()->back()->with($notification);
     }
 
-
     public function feedback_create(Request $request){
 
         $validated = $request->validate([
@@ -68,9 +85,9 @@ class PageController extends Controller
             'name'  => $request->name,
             'email'  => $request->email,
             'subject'  => $request->subject,
+            'message'  => $request->message,
             'type'  => VisitorFeedback::MESSAGE,
         ]);
-
 
         $notification = array(
             'messege' => 'Thank you for your feedback!',

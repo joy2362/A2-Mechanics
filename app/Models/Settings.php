@@ -28,7 +28,6 @@ class Settings extends Model implements HasMedia
     public const FOUNDER_DESIGNATION = 'founder_designation';
     public const FOUNDER_MESSAGE = 'founder_message';
 
-
     protected $appends = ['AppLogo','AboutUsImage','OwnerImage'];
 
     /**

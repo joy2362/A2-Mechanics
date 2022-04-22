@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class UserQuestionController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index(){
         $question = VisitorFeedback::whereType(VisitorFeedback::QUESTION)->get();
         return view('backend.pages.visitor.question.index',[

@@ -48,7 +48,7 @@
                             <input type="file" id="attachment" name="attachment" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="Submit" class="btn btn-block btn-primary">
+                            <input type="submit" value="Send" class="btn btn-block btn-primary">
                         </div>
                     </form>
                 </div>

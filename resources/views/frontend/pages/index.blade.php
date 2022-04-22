@@ -3,11 +3,11 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
     <div class="container" data-aos="zoom-out" data-aos-delay="100">
-        <h1>Welcome to <span>{{$App_Name}}</spa>
+        <h1>Welcome to <span>{{$App_Name}}</span>
         </h1>
         <h2>We Are Your Partners in Software Development</h2>
         <div class="d-flex">
-            <a href="contact.html" class="btn-get-started scrollto">Contact us</a>
+            <a href="{{route('contact')}}" class="btn-get-started scrollto">Contact us</a>
             <a href="https://www.youtube.com/watch?v=7ovC50IYzxo" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a>
         </div>
     </div>
@@ -21,75 +21,15 @@
             <h2>Our works</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, .</p>
         </div>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active" >
-                    <div class="row">
-
-                        <div class="col">
-                            <a href="./pages/works_view.html"><img class="d-block w-100"  src="{{asset('frontend/img/1.jpg')}}" alt="First slide"></a>
-                        </div>
-                        <div class="col">
-                            <a href="./pages/works_view.html"><img class="d-block w-100" id="teamview" src="{{asset('frontend/img/2.jpg')}}" alt="First slide"></a>                </div>
-                        <div class="col">
-                            <a href="./pages/works_view.html"><img class="d-block w-100" id="teamview" src="{{asset('frontend/img/3.jpg')}}" alt="First slide"></a>                </div>
-
-                        <div class="col" id="teamView">
-                            <a href="./pages/works_view.html"><img class="d-block w-100" id="teamview" src="{{asset('frontend/img/5.jpg')}}" alt="First slide"></a>                </div>
+            <div class="owl-carousel owl-theme">
+                @foreach ($work as $row)
+                    <div class="item mx-2">
+                        <a href="{{route('single.work',$row->id)}}"><img src="{{$row->attachments[0]}}" alt=""></a>
                     </div>
-
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-
-                        <div class="col">
-                            <a href="./pages/works_view.html"><img class="d-block w-100" id="teamview" src="{{asset('frontend/img/2.jpg')}}" alt="second slide"></a>
-                        </div>
-                        <div class="col">
-                            <a href="./pages/works_view.html"><img class="d-block w-100" id="teamview" src="{{asset('frontend/img/3.jpg')}}" alt="second slide"></a>
-                        </div>
-                        <div class="col">
-                            <a href="./pages/works_view.html"><img class="d-block w-100" id="teamview" src="{{asset('frontend/img/5.jpg')}}" alt="second slide"></a>
-                        </div>
-
-                        <div class="col">
-                            <a href="./pages/works_view.html"><img class="d-block w-100" id="teamview" src="{{asset('frontend/img/1.jpg')}}" alt="second slide"></a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-
-                        <div class="col">
-                            <a href="./pages/works_view.html"><img class="d-block w-100" id="teamview" src="{{asset('frontend/img/3.jpg')}}" alt="third slide"></a>                </div>
-                        <div class="col">
-                            <a href="./pages/works_view.html"><img class="d-block w-100" id="teamview" src="{{asset('frontend/img/5.jpg')}}" alt="third slide"></a>                </div>
-                        <div class="col">
-                            <a href="./pages/works_view.html"><img class="d-block w-100" id="teamview" src="{{asset('frontend/img/1.jpg')}}" alt="third slide"></a>                </div>
-
-                        <div class="col">
-                            <a href="./pages/works_view.html"><img class="d-block w-100" id="teamview" src="{{asset('frontend/img/2.jpg')}}" alt="third slide"></a>                </div>
-                    </div>
-                </div>
+                    @endforeach
             </div>
 
-            <!-- changing position and color - 943 & 947 -->
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="border-radius: 50%; height: 40px; width: 40px; background-color: blue;" >
-                <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="border-radius: 50%; height: 40px; width: 40px; background-color: blue;">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span> <!-- removed background color -->
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-        <div style="float: right; padding: 10px 10px;"><a href="our_works.html" >Read More</a></div>
+        <div style="float: right; padding: 10px 10px;"><a href="{{route('work')}}" >Read More</a></div>
     </div>
 </section>
 
@@ -177,44 +117,19 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt </p>
         <div class="row">
-            <div class="col-md-4 col-12 pb-5" data-aos="fade-up" data-aos-delay="300">
-                <div class="card shadow m-auto  members"  >
-                    <div class="position-relative">
-                        <img class="card-img-top" src="{{asset('frontend/img/team/team-2.jpg')}}" alt="Card image cap">
-                        <!-- changing designation background color -  969 -->
-                        <div class="teams"> <p class="card-text py-2">CEO</p></div>
-                    </div>
-
-                    <div class="card-body text-center" >
-                        <h4 class="card-title">Mrs. Cecilia</h4>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-12  pb-5">
-                <div class="card shadow m-auto  members"   data-aos="fade-down" data-aos-delay="100">
-                    <div class="position-relative">
-                        <img class="card-img-top" src="{{asset('frontend/img/team/team-1.jpg')}}" alt="Card image cap">
-                        <div class="teams" > <p class="card-text py-2">WEB PROGRAMMER.</p></div>
-                    </div>
-                    <div class="card-body text-center">
-                        <h4 class="card-title">Dr. James Williams</h4>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-12  pb-5">
-                <div class="card shadow m-auto  members" data-aos="fade-right" data-aos-delay="100">
-                    <div class="position-relative">
-                        <img class="card-img-top" src="{{asset('frontend/img/team/team-4.jpg')}}" alt="Card image cap">
-                        <div class="teams" > <p class="card-text py-2">WEB DESIGNER.</p>
+            @foreach($team as $row)
+                <div class="col-md-4 col-12  pb-5">
+                    <div class="card shadow m-auto  members"  data-aos="fade-down" data-aos-delay="100">
+                        <div class="position-relative">
+                            <img class="card-img-top" src="{{$row->avatar}}" alt="Card image cap">
+                            <div class="teams" > <p class="card-text py-2">{{$row->designation}}</p></div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">{{$row->name}}</h4>
                         </div>
                     </div>
-                    <div class="card-body text-center">
-                        <h4 class="card-title">Lovely Evelyn</h4>
-                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -272,11 +187,18 @@
                         <textarea class="form-control" name="message" style="height: 150px;" id="message"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-primary" id="submit" >
+                        <input type="submit" value="Send" class="btn btn-primary" id="submit" >
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </section>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel();
+        });
+    </script>
 @endsection

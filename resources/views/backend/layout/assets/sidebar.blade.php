@@ -74,6 +74,12 @@
                 </a>
             </li>
 
+            <li class="sidebar-item {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.blog.index') }}">
+                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blog</span>
+                </a>
+            </li>
+
         </ul>
     </div>
 </nav>

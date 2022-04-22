@@ -65,45 +65,20 @@
         </div>
         <!-- changing card-body backrgound on hover - 959 -->
         <div class="row">
-            <div class="col-md-4 col-12 pb-5" >
-                <a href="./pages/blog.html" >
-                    <div class="card shadow m-auto"  >
-                        <img class="card-img-top" src="{{asset("frontend/img/portfolio/2.jpg")}}" alt="Card image cap">
-                        <div class="card-body cap" style="transition: all 0.3s;" >
-                            <h4 class="card-title">World Bank</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <p>Read more</p>
+            @foreach($blog as $row)
+                <div class="col-md-4 col-12 pb-5" >
+                    <a href="{{route('blog',$row->id)}}" >
+                        <div class="card shadow m-auto"  >
+                            <img class="card-img-top" src="{{$row->attachment}}" alt="Card image cap">
+                            <div class="card-body cap" style="transition: all 0.3s;" >
+                                <h4 class="card-title">{{$row->name}}</h4>
+                                <p class="card-text">{!!   \Illuminate\Support\Str::limit($row->description, 150)  !!} </p>
+                                <p>Read more</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-4 col-12  pb-5">
-                <a href="./pages/blog.html" >
-                    <div class="card shadow m-auto" >
-                        <img class="card-img-top" src="{{asset('frontend/img/portfolio/1.jpg')}}" alt="Card image cap">
-                        <div class="card-body cap" style="transition: all 0.3s;" >
-                            <h4 class="card-title">Crypto currency depreciation</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <p>Read more</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-4 col-12  pb-5">
-                <a href="./pages/blog.html" >
-                    <div class="card shadow m-auto" >
-                        <img class="card-img-top" src="{{asset('frontend/img/portfolio/3.jpg')}}" alt="Card image cap">
-                        <div class="card-body cap" style="transition: all 0.3s;" >
-                            <h4 class="card-title">Software Development</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <p>Read more</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
+                    </a>
+                </div>
+            @endforeach
         </div>
     </div>
 </section>

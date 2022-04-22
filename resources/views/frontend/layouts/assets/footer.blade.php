@@ -3,11 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    @if($App_logo)
-                        <a href="{{route('index')}}" class="logo"><img src="{{$App_logo}}" width="100px" height="100px" alt="{{$App_Name}}"></a>
-                    @else
                         <h3>{{$App_Name}}</h3>
-                    @endif
                     <p class="mt-2">
                         {{$Footer_Description }}
                          <br><br>
@@ -21,8 +17,8 @@
                     <ul>
                         <li><i class="bx bx-chevron-right"></i> <a href="{{route('index')}}">Home</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="{{route('about')}}">About us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="./pages/terms_of_service.html">Terms of service</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="./pages/contact.html">Contact</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('team')}}">Our Team</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('contact')}}">Contact</a></li>
                     </ul>
                 </div>
 

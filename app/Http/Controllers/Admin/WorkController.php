@@ -73,7 +73,6 @@ class WorkController extends Controller
     }
 
     public function show(Work $work){
-        //dd($work->attachments);
         return view('backend.pages.work.show',['work'=>$work]);
     }
 

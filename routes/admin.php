@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FeedbackController;
@@ -50,6 +51,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware' => 'auth'],function(
     Route::resource('visitor/feedback', FeedbackController::class,array('only'=>['index','destroy','show']));
     Route::resource('team', TeamController::class,array('except'=>['create','show']));
     Route::resource('work', WorkController::class);
+    Route::resource('blog', BlogController::class);
 
     //app icon change
     Route::post('setting/change/logo', [SettingsController::class,'change_logo'])->name('setting.logo.change');

@@ -162,5 +162,28 @@ class SettingSeeder extends Seeder
             ]
         );
 
+
+        Settings::updateOrCreate(
+            [
+                'name' => Settings::HERO_SECTION_MESSAGE,
+            ],
+            [
+                'name' => Settings::HERO_SECTION_MESSAGE,
+                'value' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            ]
+        );
+
+        Settings::updateOrCreate(
+            [
+                'name' => Settings::YOUTUBE_LINK,
+            ],
+            [
+                'name' => Settings::YOUTUBE_LINK,
+                'value' => "https://www.youtube.com/watch?v=bKDdT_nyP54",
+            ]
+        );
+
+
+
     }
 }

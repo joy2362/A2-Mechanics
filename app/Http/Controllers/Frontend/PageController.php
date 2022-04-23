@@ -44,21 +44,24 @@ class PageController extends Controller
     }
 
     public function blogs(Request $request){
+
         if (!empty($request->category)){
             $blog = Blog::where('category_id',$request->category)->simplePaginate(6);
             $selected_category = $request->category;
+
         }
-        if (!empty($request->search)){
+       elseif  (!empty($request->search)){
             $blog = Blog::where('name', 'like', '%' . $request->search . '%')->simplePaginate(6);
-            $selected_category  = 0;
         }
         else{
             $blog = Blog::inRandomOrder()->limit(6)->get();
+        }
+        if (empty($selected_category)){
             $selected_category = 0;
         }
         $recent_blog = Blog::limit(4)->get();
         $category = Category::all();
-        return view('frontend.pages.blogs',['selected_category'=>$selected_category,'blog' => $blog,'category'=>$category,'recent_blog'=>$recent_blog]);
+        return view('frontend.pages.blogs',['selected_category'=> $selected_category,'blog' => $blog,'category'=>$category,'recent_blog'=>$recent_blog]);
     }
 
     public function single_blog(Blog $blog){
@@ -67,6 +70,25 @@ class PageController extends Controller
         return view('frontend.pages.blog',['blog' => $blog,'category'=>$category,'recent_blog'=>$recent_blog]);
     }
 
+    public function comment(Request $request, Blog $blog){
+        $validated = $request->validate([
+            'name' => 'required',
+            'comment' => 'required',
+        ]);
+
+        $blog->comment()->create([
+            'name' => $request->name,
+            'message' => $request->comment,
+        ]);
+
+        $notification = array(
+            'messege' => 'Thank you for your Comment!',
+            'alert-type' => 'success'
+        );
+
+        return Redirect()->back()->with($notification);
+
+    }
 
     public function single_work(Work $work){
         return view('frontend.pages.single-work',['work'=>$work]);

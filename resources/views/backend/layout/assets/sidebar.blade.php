@@ -19,6 +19,11 @@
                     <i class="align-middle" data-feather="settings"></i> <span class="align-middle">App Setting</span>
                 </a>
             </li>
+            <li class="sidebar-item {{ request()->routeIs('admin.websetting.index') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.websetting.index') }}">
+                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Web Setting</span>
+                </a>
+            </li>
 
             <li class="sidebar-header">
                 Q&A
@@ -74,7 +79,7 @@
                 </a>
             </li>
 
-            <li class="sidebar-item {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}">
+            <li class="sidebar-item {{ request()->routeIs('admin.blog.*') || request()->routeIs('admin.comment.index')   ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('admin.blog.index') }}">
                     <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blog</span>
                 </a>

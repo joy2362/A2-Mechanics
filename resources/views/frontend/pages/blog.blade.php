@@ -55,26 +55,27 @@
                         </div>
                     </div>
                     <h4 class="pt-5">Comments</h4>
-                    <div class="boxs row ">
-                        <div class="col-10">
-                            <h4>John Williams</h4>
-                            <p><i>jan, 2 2022</i></p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    @foreach($blog->comment as $row)
+                        <div class="boxs row ">
+                            <div class="col-10">
+                                <h4>{{$row->name}}</h4>
+                                <p><i>{{$row->created_at->format('M, d Y')}}</i></p>
+                                <p>{!! $row->message !!}</p>
+                            </div>
                         </div>
-                    </div>
-
+                    @endforeach
                     <div class="box">
                         <h4>Leave a Reply</h4>
-                        <form method="post" action="">
+                        <form method="post" action="{{route('blog.comment',$blog->id)}}">
+                            @csrf
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control" placeholder=" Your Name" id="name">
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="msg" style="height: 100px;" id="msg" placeholder=" Your Comments"></textarea>
+                                <textarea class="form-control" name="comment" style="height: 100px;" id="comment" placeholder=" Your Comments"></textarea>
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="comment" class="btn btn-primary" id="submit" value="Post Comments" >
+                                <input type="submit" class="btn btn-primary" id="submit" value="Post Comments" >
                             </div>
                         </form>
                     </div>

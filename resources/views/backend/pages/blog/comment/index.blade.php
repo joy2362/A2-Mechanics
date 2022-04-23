@@ -1,13 +1,11 @@
 @extends('backend.layout.master')
 @section('title')
-    <title>Blogs</title>
+    <title>Comments</title>
 @endsection
 @section('content')
     <main class="content">
         <div class="container-fluid p-0">
-            <h1 class="h3 mb-3">Blogs
-                <a href="{{route('admin.blog.create')}}" class="float-end btn btn-sm btn-success">Add new</a>
-            </h1>
+            <h1 class="h3 mb-3">Comments</h1>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -15,28 +13,23 @@
                             <div class="table-responsive">
                                 <table class="table table-border" id="datatable1">
                                     <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Category</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Comment</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($blog as $row)
+                                    @foreach($comment as $row)
                                         <tr>
                                             <td>{{$row->id}}</td>
-                                            <td><a href="{{$row->attachment}}"><img src="{{$row->attachment}}" alt="" width="100" height="100"> </a></td>
                                             <td>{{$row->name}}</td>
-                                            <td>{{$row->category->name}}</td>
+                                            <td>{{$row->message}}</td>
                                             <td>{{$row->status}}</td>
                                             <td>
-                                                <form action="{{route('admin.blog.destroy',$row->id)}}" method="post">
-                                                    <a class="m-2 btn btn-sm btn-primary" href="{{route('admin.blog.show',$row->id)}}">View</a>
-                                                    <a class="m-2 btn btn-sm btn-info" href="{{route('admin.comment.index',$row->id)}}">comments</a>
-                                                    <a class="m-2 btn btn-sm btn-success" href="{{route('admin.blog.edit',$row->id)}}">Edit</a>
+                                                <form action="{{route('admin.comment.destroy',$row->id)}}" method="post">
                                                     <button class="m-2 btn btn-sm btn-danger delete_button" type="submit" value="{{$row->id}}" >Delete</button>
                                                     @method('delete')
                                                     @csrf
@@ -82,8 +75,6 @@
                     }
                 })
             });
-
         });
-
     </script>
 @endsection

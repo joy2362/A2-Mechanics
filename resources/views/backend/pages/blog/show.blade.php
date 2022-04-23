@@ -21,7 +21,7 @@
                             <p class="card-text">
                                 <a href="{{$blog->attachment}}"><img src="{{$blog->attachment}}" alt="" height="100" width="100"></a>
                             </p>
-                            <p class="card-text fw-bold">Meta Tag</p>
+                            <p class="card-text fw-bold">Keywords</p>
                             <p class="card-text">
                                 @foreach($blog->tags as $row)
                                     <span class="badge bg-secondary">{{$row->name}}</span>

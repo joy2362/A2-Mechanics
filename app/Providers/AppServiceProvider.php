@@ -42,6 +42,9 @@ class AppServiceProvider extends ServiceProvider
             $founder_designation = Settings::select('value')->where('name',Settings::FOUNDER_DESIGNATION)->first();
             $founder_message = Settings::select('value')->where('name',Settings::FOUNDER_MESSAGE)->first();
 
+            $hero_section_message = Settings::where('name',Settings::HERO_SECTION_MESSAGE)->first();
+            $youtube_link = Settings::select('value')->where('name',Settings::YOUTUBE_LINK)->first();
+
             $view->with([
                 "App_Name" => $app_name->value,
                 "App_logo" => $app_name->AppLogo,
@@ -60,6 +63,9 @@ class AppServiceProvider extends ServiceProvider
                 "Founder_image" => $founder_name->OwnerImage,
                 "Founder_designation" => $founder_designation->value,
                 "Founder_message" => $founder_message->value,
+                "Hero_section_message" => $hero_section_message->value,
+                "Youtube_link" => $youtube_link->value,
+                "Hero_section_image" => $hero_section_message->HeroImage,
             ]);
         });
     }

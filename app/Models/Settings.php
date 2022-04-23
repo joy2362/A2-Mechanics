@@ -27,8 +27,10 @@ class Settings extends Model implements HasMedia
     public const FOUNDER_NAME = 'founder_name';
     public const FOUNDER_DESIGNATION = 'founder_designation';
     public const FOUNDER_MESSAGE = 'founder_message';
+    public const HERO_SECTION_MESSAGE = 'hero_section_message';
+    public const YOUTUBE_LINK = 'youtube_link';
 
-    protected $appends = ['AppLogo','AboutUsImage','OwnerImage'];
+    protected $appends = ['AppLogo','AboutUsImage','OwnerImage','HeroImage'];
 
     /**
      * Register the media collections
@@ -40,11 +42,17 @@ class Settings extends Model implements HasMedia
         $this->addMediaCollection('app_logo')->singleFile();
         $this->addMediaCollection('feather_image')->singleFile();
         $this->addMediaCollection('owner_image')->singleFile();
+        $this->addMediaCollection('hero_image')->singleFile();
     }
 
     public function getAppLogoAttribute()
     {
         return $this->getFirstMediaUrl('app_logo');
+    }
+
+    public function getHeroImageAttribute()
+    {
+        return $this->getFirstMediaUrl('hero_image');
     }
 
     public function getAboutUsImageAttribute()

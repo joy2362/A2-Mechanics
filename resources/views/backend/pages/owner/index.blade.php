@@ -52,7 +52,7 @@
                     <div class="card">
                         <div class="card-header">
 
-                            <h5 class="card-title mb-0">Update Application Setting</h5>
+                            <h5 class="card-title mb-0">Update Owner Information</h5>
                         </div>
                         <div class="card-body h-100">
 

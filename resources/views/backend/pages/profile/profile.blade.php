@@ -13,14 +13,12 @@
                 <div class="col-md-4 col-xl-3">
                     <div class="card mb-3">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Profile Details</h5>
+                            <h5 class="card-title mb-0">Profile Image</h5>
                         </div>
                         <div class="card-body text-center">
-                            <img src="{{ asset(Auth::guard('web')->user()->avatar)}}" alt="{{Auth::guard('web')->user()->name}}" class="img-fluid rounded-circle mb-2" style="width:150px; height:150px;" />
-                            <h5 class="card-title mb-0">{{Auth::guard('web')->user()->name}}</h5>
-
-                            <div>
-                                <button data-bs-toggle="modal" data-bs-target="#changeImage" class="btn btn-primary btn-sm">Change Image</button>
+                            <div style="position: relative; width: 150px; height: 150px">
+                                <a href="{{ asset(Auth::guard('web')->user()->avatar)}}"> <img src="{{ asset(Auth::guard('web')->user()->avatar)}}" alt="{{Auth::guard('web')->user()->name}}" class="img-fluid rounded-circle mb-2" style="width:250px; height:150px;" /></a>
+                                <button style="bottom: 0;right:0; position: absolute;border-radius: 50%;width: 35px;height: 35px" data-bs-toggle="modal" data-bs-target="#changeImage" class="btn btn-primary btn-sm"><i class="align-middle" data-feather="camera"></i></button>
                             </div>
                         </div>
                         <hr class="my-0" />

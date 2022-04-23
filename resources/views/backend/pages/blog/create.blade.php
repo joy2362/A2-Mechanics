@@ -39,7 +39,7 @@
                                 </div>
 
                                 <div class="form-group mb-3">
-                                    <label for="tags" class="form-label">Meta Tags</label>
+                                    <label for="tags" class="form-label">Keywords</label>
                                     <input name="tags"  id="tags" placeholder="write some meta tag" value="" >
                                     <small>press "Enter" or "tab" to add tag</small>
                                 </div>

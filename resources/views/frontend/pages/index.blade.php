@@ -1,19 +1,19 @@
 @extends('frontend.layouts.main')
 @section('content')
 <!-- ======= Hero Section ======= -->
-<section id="hero" class="d-flex align-items-center">
+<section id="hero" class="d-flex align-items-center" style="background-image: url('{{$Hero_section_image}}')">
+{{--    Hero_section_image--}}
     <div class="container" data-aos="zoom-out" data-aos-delay="100">
         <h1>Welcome to <span>{{$App_Name}}</span>
         </h1>
-        <h2>We Are Your Partners in Software Development</h2>
+        <h2>{{$Hero_section_message}}</h2>
         <div class="d-flex">
             <a href="{{route('contact')}}" class="btn-get-started scrollto">Contact us</a>
-            <a href="https://www.youtube.com/watch?v=7ovC50IYzxo" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a>
+            <a href="{{$Youtube_link}}" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a>
         </div>
     </div>
-</section><!-- End Hero -->
-
-
+</section>
+<!-- End Hero -->
 
 <section id="services">
     <div class="container ">

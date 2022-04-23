@@ -23,6 +23,7 @@ Route::get('/team',[PageController::class,'team'])->name('team');
 Route::get('/work',[PageController::class,'work'])->name('work');
 Route::get('/blogs',[PageController::class,'blogs'])->name('blogs');
 Route::get('/blog/{blog}',[PageController::class,'single_blog'])->name('blog');
+Route::post('/blog/{blog}/comment',[PageController::class,'comment'])->name('blog.comment');
 Route::get('/work/{work}',[PageController::class,'single_work'])->name('single.work');
 
 Route::post('/problem/create',[PageController::class,'problem_create'])->name('problem.create');

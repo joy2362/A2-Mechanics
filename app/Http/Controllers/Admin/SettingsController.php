@@ -23,7 +23,8 @@ class SettingsController extends Controller
         $instagram = Settings::select('value')->where('name',Settings::INSTAGRAM)->first();
         $footer_description = Settings::select('value')->where('name',Settings::FOOTER_DESCRIPTION)->first();
         $social_network_description = Settings::select('value')->where('name',Settings::SOCIAL_NETWORK_DESCRIPTION)->first();
-
+        $hero_section_message = Settings::where('name',Settings::HERO_SECTION_MESSAGE)->first();
+        $youtube_link = Settings::select('value')->where('name',Settings::YOUTUBE_LINK)->first();
 
         return view('backend.pages.settings.index',[
             "App_Name" => $app_name->value,
@@ -39,6 +40,9 @@ class SettingsController extends Controller
             "Instagram" => $instagram->value,
             "Footer_Description" => $footer_description->value,
             "Social_Network_Description" => $social_network_description->value,
+            "Hero_section_message" => $hero_section_message->value,
+            "Youtube_link" => $youtube_link->value,
+            "Hero_section_image" => $hero_section_message->HeroImage,
         ]);
     }
 
@@ -89,6 +93,26 @@ class SettingsController extends Controller
 
     }
 
+    public function change_hero_image_image(Request $request){
+        $request->validate([
+            'heroImage' => 'required',
+        ]);
+
+        $setting = Settings::where('name',Settings::HERO_SECTION_MESSAGE)->first();
+
+        if ($request->has('heroImage')) {
+            $setting->addMedia($request->file('heroImage'))->toMediaCollection('hero_image');
+        }
+
+        $notification = array(
+            'messege' => 'Hero Image Changed Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return Redirect()->back()->with($notification);
+
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -106,6 +130,16 @@ class SettingsController extends Controller
             'instagram' => 'nullable',
             'social_network_description' => 'required',
             'footer_description' => 'required',
+            'hero_section_message' => 'required',
+            'youtube_link' => 'required',
+        ]);
+
+        Settings::where('name',Settings::HERO_SECTION_MESSAGE)->update([
+            'value' => $request->input('hero_section_message')
+        ]);
+
+        Settings::where('name',Settings::YOUTUBE_LINK)->update([
+            'value' => $request->input('youtube_link')
         ]);
 
         Settings::where('name',Settings::APP_NAME)->update([

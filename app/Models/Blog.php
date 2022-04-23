@@ -13,6 +13,7 @@ class Blog extends Model implements HasMedia
     use HasFactory,HasTags,InteractsWithMedia;
 
     protected $guarded = [];
+
     protected $appends = ['attachment'];
 
 
@@ -43,6 +44,14 @@ class Blog extends Model implements HasMedia
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get the post that owns the comment.
+     */
+    public function Comment()
+    {
+        return $this->hasMany(Comment::class);
     }
 
 

@@ -21,7 +21,7 @@
                                     <a href="{{$row}}"><img src="{{$row}}" alt="" height="100" width="100"></a>
                                 @endforeach
                             </p>
-                            <p class="card-text">Meta Tag</p>
+                            <p class="card-text">Keywords</p>
                             <p class="card-text">
                                 @foreach($work->tags as $row)
                                     <span class="badge bg-secondary">{{$row->name}}</span>

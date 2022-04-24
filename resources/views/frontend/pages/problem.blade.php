@@ -1,10 +1,16 @@
 @extends('frontend.layouts.main')
+@section('head')
+    <meta content="{{$problem_page->meta_description}}" name="description">
+    <meta content="{{$problem_tag}}" name="keywords">
+    <title>{{$problem_page->title. ' - '.$App_Name}}</title>
+@endsection
 @section('content')
     <section class="section-bg section_about">
         <div class="container">
             <div class="col">
                 <!-- centering title with text-center class -->
-                <h2 class="font-weight-bold text-primary text-center">Ask a Problem</h2>
+                <h2 class="font-weight-bold text-primary text-center">{{$problem_page->title}}</h2>
+                <p>{!! $problem_page->sub_title !!}</p>
                 <hr style="width: 40%; color: blue;">
             </div>
         </div>

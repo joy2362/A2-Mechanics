@@ -29,6 +29,7 @@ class Settings extends Model implements HasMedia
     public const FOUNDER_MESSAGE = 'founder_message';
     public const HERO_SECTION_MESSAGE = 'hero_section_message';
     public const YOUTUBE_LINK = 'youtube_link';
+    public const TERMSANDCONDITION = 'term_and_condition';
 
     protected $appends = ['AppLogo','AboutUsImage','OwnerImage','HeroImage'];
 

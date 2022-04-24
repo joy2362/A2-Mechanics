@@ -19,4 +19,5 @@ class WebSettings extends Model
     public const TEAM_PAGE = 'team';
     public const PROBLEM_PAGE = 'problem';
     public const CONTACT_PAGE = 'contact';
+    public const TERMS_PAGE = 'terms';
 }

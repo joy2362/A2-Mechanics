@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Settings;
+use App\Models\WebSettings;
+use App\Models\Work;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +19,21 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+    private  function fetchSetting($name){
+        return Settings::where('name',$name)->first();
+    }
+
+    private function fetchWebSetting($name){
+        return  WebSettings::where('name',$name)->first();
+    }
+
+    private function fetchTags($tags){
+        $keyword = [];
+        foreach (  $tags as $tag) {
+            array_push($keyword, $tag['name']);
+        }
+        return implode(",",$keyword);
+    }
     /**
      * Bootstrap any application services.
      *
@@ -26,24 +43,42 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('*', function ($view)
         {
-            $app_name = Settings::where('name',Settings::APP_NAME)->first();
-            $app_email = Settings::select('value')->where('name',Settings::APP_EMAIL)->first();
-            $app_mobile = Settings::select('value')->where('name',Settings::APP_MOBILE)->first();
-            $about_us = Settings::where('name',Settings::ABOUT_US)->first();
-            $address = Settings::select('value')->where('name',Settings::ADDRESS)->first();
-            $facebook = Settings::select('value')->where('name',Settings::FACEBOOK)->first();
-            $twitter = Settings::select('value')->where('name',Settings::TWITTER)->first();
-            $linkedin = Settings::select('value')->where('name',Settings::LINKEDIN)->first();
-            $instagram = Settings::select('value')->where('name',Settings::INSTAGRAM)->first();
-            $footer_description = Settings::select('value')->where('name',Settings::FOOTER_DESCRIPTION)->first();
-            $social_network_description = Settings::select('value')->where('name',Settings::SOCIAL_NETWORK_DESCRIPTION)->first();
+            $service = Work::inRandomOrder()->limit(4)->get();
+            $app_name = $this->fetchSetting(Settings::APP_NAME);
+            $app_email = $this->fetchSetting(Settings::APP_EMAIL);
+            $app_mobile = $this->fetchSetting(Settings::APP_MOBILE);
+            $about_us = $this->fetchSetting(Settings::ABOUT_US);
+            $address = $this->fetchSetting(Settings::ADDRESS);
+            $facebook = $this->fetchSetting(Settings::FACEBOOK);
+            $twitter = $this->fetchSetting(Settings::TWITTER);
+            $linkedin = $this->fetchSetting(Settings::LINKEDIN);
+            $instagram = $this->fetchSetting(Settings::INSTAGRAM);
+            $footer_description = $this->fetchSetting(Settings::FOOTER_DESCRIPTION);
+            $social_network_description = $this->fetchSetting(Settings::SOCIAL_NETWORK_DESCRIPTION);
+            $founder_name = $this->fetchSetting(Settings::FOUNDER_NAME);
+            $founder_designation = $this->fetchSetting(Settings::FOUNDER_DESIGNATION);
+            $founder_message = $this->fetchSetting(Settings::FOUNDER_MESSAGE);
+            $hero_section_message = $this->fetchSetting(Settings::HERO_SECTION_MESSAGE);
+            $youtube_link = $this->fetchSetting(Settings::YOUTUBE_LINK);
+            $terms_and_condition = $this->fetchSetting(Settings::TERMSANDCONDITION);
 
-            $founder_name = Settings::where('name',Settings::FOUNDER_NAME)->first();
-            $founder_designation = Settings::select('value')->where('name',Settings::FOUNDER_DESIGNATION)->first();
-            $founder_message = Settings::select('value')->where('name',Settings::FOUNDER_MESSAGE)->first();
+            $home_page = $this->fetchWebSetting(WebSettings::HOME_PAGE);
+            $about_page = $this->fetchWebSetting(WebSettings::ABOUT_PAGE);
+            $blog_page = $this->fetchWebSetting(WebSettings::BLOG_PAGE);
+            $work_page = $this->fetchWebSetting(WebSettings::WORK_PAGE);
+            $team_page = $this->fetchWebSetting(WebSettings::TEAM_PAGE);
+            $problem_page = $this->fetchWebSetting(WebSettings::PROBLEM_PAGE);
+            $contact_page = $this->fetchWebSetting(WebSettings::CONTACT_PAGE);
+            $terms_page = $this->fetchWebSetting(WebSettings::TERMS_PAGE);
 
-            $hero_section_message = Settings::where('name',Settings::HERO_SECTION_MESSAGE)->first();
-            $youtube_link = Settings::select('value')->where('name',Settings::YOUTUBE_LINK)->first();
+            $home_tag = $this->fetchTags($home_page->tags);
+            $about_tag = $this->fetchTags($about_page->tags);
+            $blog_tag = $this->fetchTags($blog_page->tags);
+            $work_tag = $this->fetchTags($work_page->tags);
+            $team_tag = $this->fetchTags($team_page->tags);
+            $problem_tag = $this->fetchTags($problem_page->tags);
+            $contact_tag = $this->fetchTags($contact_page->tags);
+            $terms_tag = $this->fetchTags($terms_page->tags);
 
             $view->with([
                 "App_Name" => $app_name->value,
@@ -65,7 +100,25 @@ class AppServiceProvider extends ServiceProvider
                 "Founder_message" => $founder_message->value,
                 "Hero_section_message" => $hero_section_message->value,
                 "Youtube_link" => $youtube_link->value,
+                "terms_and_condition" => $terms_and_condition->value,
                 "Hero_section_image" => $hero_section_message->HeroImage,
+                'home_page' => $home_page,
+                'about_page' => $about_page,
+                'blog_page' => $blog_page,
+                'work_page' => $work_page,
+                'team_page' => $team_page,
+                'problem_page' => $problem_page,
+                'contact_page' => $contact_page,
+                'home_tag' => $home_tag,
+                'about_tag' => $about_tag,
+                'blog_tag' => $blog_tag,
+                'work_tag' => $work_tag,
+                'team_tag' => $team_tag,
+                'problem_tag' => $problem_tag,
+                'contact_tag' => $contact_tag,
+                'terms_page' => $terms_page,
+                'terms_tag' => $terms_tag,
+                'service' => $service
             ]);
         });
     }

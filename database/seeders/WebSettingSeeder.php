@@ -105,5 +105,18 @@ class WebSettingSeeder extends Seeder
                 'tags' => ['Contact', 'Contact page'],
             ]
         );
+
+        WebSettings::updateOrCreate(
+            [
+                'name' => WebSettings::TERMS_PAGE,
+            ],
+            [
+                'name' => WebSettings::TERMS_PAGE,
+                'title' => "Terms",
+                'sub_title' => "Terms page",
+                'meta_description' => "Terms page",
+                'tags' => ['Terms', 'Terms page'],
+            ]
+        );
     }
 }

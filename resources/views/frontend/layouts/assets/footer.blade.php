@@ -15,23 +15,22 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('index')}}">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('about')}}">About us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('team')}}">Our Team</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('contact')}}">Contact</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('index')}}">{{$home_page->title}}</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('about')}}">{{$about_page->title}}</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('terms')}}">{{$terms_page->title}}</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('contact')}}">{{$contact_page->title}}</a></li>
                     </ul>
                 </div>
-
+                @if(count($service) > 1)
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Our Services</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                        @foreach($service as $row)
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{route('single.work',$row->id)}}">{{$row->title}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
+                @endif
 
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Our Social Networks</h4>

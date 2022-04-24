@@ -15,10 +15,11 @@
                         <div class="card-header">
                             <h5 class="card-title mb-0">Owner Image</h5>
                         </div>
+
                         <div class="card-body text-center">
-                            <img src="{{ $Founder_image }}" alt="{{$Founder_name}}" class="img-fluid rounded-circle mb-2" style="width:150px; height:150px;" />
-                            <div>
-                                <button data-bs-toggle="modal" data-bs-target="#changeImage" class="btn btn-primary btn-sm">Change Image</button>
+                            <div style="position: relative; width: 150px; height: 150px">
+                                <img  src="{{ $Founder_image }}" alt="{{$Founder_name}}" class="img-fluid rounded-circle mb-2" style="width:100%; height:100%;  overflow: hidden;" />
+                                <button style="bottom: 0;right:0; position: absolute;border-radius: 50%;width: 35px;height: 35px" data-bs-toggle="modal" data-bs-target="#changeImage" class="btn btn-primary btn-sm"> <i class="align-middle" data-feather="camera"></i></button>
                             </div>
                         </div>
                         <hr class="my-0" />

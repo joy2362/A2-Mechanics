@@ -1,12 +1,14 @@
 <?php
 
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\FounderController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\TeamController;
@@ -37,6 +39,8 @@ Route::group(['prefix'=>env('ADMIN_PANEL_URL'),'as'=>'admin.','middleware' => 'a
     Route::get('/home', function () {
         return view('backend/pages/dashboard');
     })->name('home');
+    Route::get('/home',HomeController::class)->name('home');
+
 
     //admin profile
     Route::get('/profile/setting',[ProfileController::class,'profile_setting'])->name('profile.setting');
@@ -46,6 +50,7 @@ Route::group(['prefix'=>env('ADMIN_PANEL_URL'),'as'=>'admin.','middleware' => 'a
 
     //crud operation
     Route::resource('setting', SettingsController::class,array('only'=>['index','update']));
+    Route::resource('user', AdminController::class,array('except'=>['show']));
     Route::resource('websetting', WebSettingController::class,array('only'=>['index','update']));
     Route::resource('founder', FounderController::class,array('except'=>['create','show']));
     Route::resource('faq', FaqController::class,array('except'=>['create','show']));

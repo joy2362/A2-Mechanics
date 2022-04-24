@@ -24,6 +24,10 @@ class PageController extends Controller
         return view('frontend.pages.about');
     }
 
+    public function terms(){
+        return view('frontend.pages.service');
+    }
+
     public function problem(){
         $faq = Faq::whereStatus(Faq::ACTIVE)->simplePaginate(5);
         return view('frontend.pages.problem',['faq'=>$faq]);
@@ -67,7 +71,12 @@ class PageController extends Controller
     public function single_blog(Blog $blog){
         $recent_blog = Blog::limit(4)->get();
         $category = Category::all();
-        return view('frontend.pages.blog',['blog' => $blog,'category'=>$category,'recent_blog'=>$recent_blog]);
+        $tags = [];
+        foreach (  $blog->tags as $tag) {
+            array_push($tags, $tag['name']);
+        }
+        $tag = implode(",",$tags);
+        return view('frontend.pages.blog',['blog' => $blog,'blog_keyword'=>$tag,'category'=>$category,'recent_blog'=>$recent_blog]);
     }
 
     public function comment(Request $request, Blog $blog){
@@ -91,7 +100,12 @@ class PageController extends Controller
     }
 
     public function single_work(Work $work){
-        return view('frontend.pages.single-work',['work'=>$work]);
+        $tags = [];
+        foreach (  $work->tags as $tag) {
+            array_push($tags, $tag['name']);
+        }
+        $tag = implode(",",$tags);
+        return view('frontend.pages.single-work',['work'=>$work,'work_keyword' => $tag]);
     }
 
     public function problem_create(Request $request){

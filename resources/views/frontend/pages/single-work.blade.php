@@ -1,12 +1,16 @@
 @extends('frontend.layouts.main')
+@section('head')
+    <meta content="{{$work->meta_description}}" name="description">
+    <meta content="{{$work_keyword}}" name="keywords">
+    <title>{{$work_page->title. ' - '.$App_Name}}</title>
+@endsection
 @section('content')
-
-
     <section class="section-bg section_about">
         <div class="container">
             <div class="col">
                 <!-- centering title -->
-                <h2 class="font-weight-bold text-primary text-center">Our works</h2>
+                <h2 class="font-weight-bold text-primary text-center">{{$work_page->title}}</h2>
+                <p>{!! $work_page->sub_title !!}</p>
                 <hr style="width: 40%; color: blue;">
             </div>
         </div>

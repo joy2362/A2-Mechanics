@@ -9,53 +9,8 @@ use Illuminate\Http\Request;
 class WebSettingController extends Controller
 {
 
-    private function fetchSetting($name){
-        return  WebSettings::where('name',$name)->first();
-    }
-
-    private function fetchTags($tags){
-        $keyword = [];
-        foreach (  $tags as $tag) {
-            array_push($keyword, $tag['name']);
-        }
-        return implode(",",$keyword);
-    }
-
     public function index(){
-        $home = $this->fetchSetting(WebSettings::HOME_PAGE);
-        $about = $this->fetchSetting(WebSettings::ABOUT_PAGE);
-        $blog = $this->fetchSetting(WebSettings::BLOG_PAGE);
-        $work = $this->fetchSetting(WebSettings::WORK_PAGE);
-        $team = $this->fetchSetting(WebSettings::TEAM_PAGE);
-        $problem = $this->fetchSetting(WebSettings::PROBLEM_PAGE);
-        $contact = $this->fetchSetting(WebSettings::CONTACT_PAGE);
-
-       // dd($home);
-        $home_tag = $this->fetchTags($home->tags);
-        $about_tag = $this->fetchTags($about->tags);
-        $blog_tag = $this->fetchTags($blog->tags);
-        $work_tag = $this->fetchTags($work->tags);
-        $team_tag = $this->fetchTags($team->tags);
-        $problem_tag = $this->fetchTags($problem->tags);
-        $contact_tag = $this->fetchTags($contact->tags);
-
-        return view('backend.pages.web-setting.index',[
-            'home' => $home,
-            'about' => $about,
-            'blog' => $blog,
-            'work' => $work,
-            'team' => $team,
-            'problem' => $problem,
-            'contact' => $contact,
-            'home_tag' => $home_tag,
-            'about_tag' => $about_tag,
-            'blog_tag' => $blog_tag,
-            'work_tag' => $work_tag,
-            'team_tag' => $team_tag,
-            'problem_tag' => $problem_tag,
-            'contact_tag' => $contact_tag,
-        ]);
-
+        return view('backend.pages.web-setting.index');
     }
 
     public function update(Request $request , WebSettings $websetting){

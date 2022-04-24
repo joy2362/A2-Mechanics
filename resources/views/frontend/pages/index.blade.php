@@ -1,4 +1,10 @@
 @extends('frontend.layouts.main')
+@section('head')
+    <meta content="{{$home_page->meta_description}}" name="description">
+    <meta content="{{$home_tag}}" name="keywords">
+    <title>{{$home_page->title. ' - '.$App_Name}}</title>
+@endsection
+
 @section('content')
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center" style="background-image: url('{{$Hero_section_image}}')">
@@ -14,12 +20,11 @@
     </div>
 </section>
 <!-- End Hero -->
-
 <section id="services">
     <div class="container ">
         <div class="section-title">
-            <h2>Our works</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, .</p>
+            <h2>{{$work_page->title}}</h2>
+            <p>{!! $work_page->sub_title !!}</p>
         </div>
             <div class="owl-carousel owl-theme">
                 @foreach ($work as $row)
@@ -36,22 +41,19 @@
 <section id="about" class="section-bg">
     <div class="container px-4">
         <div class="section-title">
-            <h2 class="py-2">About Us</h2>
-            <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit,</h4>
+            <h2>{{$about_page->title}}</h2>
+            <p>{!! $about_page->sub_title !!}</p>
+
         </div>
 
         <div class="row">
             <div class="col-md-6 " data-aos="zoom-out" data-aos-delay="100">
-                <!-- rounded corner img -->
                 <img src="{{$About_Us_Image}}" class="cap img-fluid rounded">
             </div>
-
             <!-- showing about content on click in home page -->
             <div class="col-md-6 py-3">
-                <p>{!! $About_Us !!}
-                    <!-- change curson icon -->
-                </p>
-                <a  href="{{route('about')}}" class="text-primary font-weight-bold"> Read More</a>
+                <p>{!! $About_Us !!}</p>
+                <a href="{{route('about')}}" class="text-primary font-weight-bold"> Read More</a>
             </div>
         </div>
     </div>
@@ -59,11 +61,9 @@
 <section id="blog" class="blog">
     <div class="container ">
         <div class="section-title">
-            <h2>Blog</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            </p>
+            <h2>{{$blog_page->title}}</h2>
+            <p>{!! $blog_page->sub_title !!}</p>
         </div>
-        <!-- changing card-body backrgound on hover - 959 -->
         <div class="row">
             @foreach($blog as $row)
                 <div class="col-md-4 col-12 pb-5" >
@@ -86,11 +86,9 @@
 <section id="team">
     <div class="container text-center ">
         <div class="section-title">
-            <h2>Our TEAM</h2>
+            <h2>{{$team_page->title}}</h2>
+            <p>{!! $team_page->sub_title !!}</p>
         </div>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt </p>
         <div class="row">
             @foreach($team as $row)
                 <div class="col-md-4 col-12  pb-5">
@@ -114,9 +112,8 @@
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>Contact</h2>
-            <h3><span>Contact Us</span></h3>
-            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+            <h2>{{$contact_page->title}}</h2>
+            <p>{!! $contact_page->sub_title !!}</p>
         </div>
         <div class="row">
             <div class="col-md-4 ">

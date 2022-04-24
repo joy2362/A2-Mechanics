@@ -183,6 +183,16 @@ class SettingSeeder extends Seeder
             ]
         );
 
+      Settings::updateOrCreate(
+          [
+              'name' => Settings::TERMSANDCONDITION,
+          ],
+          [
+              'name' => Settings::TERMSANDCONDITION,
+              'value' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+          ]
+      );
+
 
 
     }

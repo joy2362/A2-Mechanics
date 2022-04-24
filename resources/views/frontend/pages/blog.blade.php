@@ -1,12 +1,17 @@
 @extends('frontend.layouts.main')
+@section('head')
+    <meta content="{{$blog->meta_description}}" name="description">
+    <meta content="{{$blog_keyword}}" name="keywords">
+    <title>{{$blog_page->title. ' - '.$App_Name}}</title>
+@endsection
 @section('content')
-
     <!-- ======= Hero Section ======= -->
     <section class="section-bg section_about">
         <div class="container">
             <div class="col">
                 <!-- centering title with text-center class -->
-                <h2 class="font-weight-bold text-primary text-center">Blog</h2>
+                <h2 class="font-weight-bold text-primary text-center">{{$blog_page->title}}</h2>
+                <p>{!! $blog_page->sub_title !!}</p>
                 <hr style="width: 40%; color: blue;">
             </div>
         </div>

@@ -1,12 +1,17 @@
 @extends('frontend.layouts.main')
+@section('head')
+<meta content="{{$blog_page->meta_description}}" name="description">
+<meta content="{{$blog_tag}}" name="keywords">
+<title>{{$blog_page->title. ' - '.$App_Name}}</title>
+@endsection
 @section('content')
-
     <!-- ======= Hero Section ======= -->
     <section class="section-bg section_about">
         <div class="container">
             <div class="col">
                 <!-- centering title with text-center class -->
-                <h2 class="font-weight-bold text-primary text-center">Blogs</h2>
+                <h2 class="font-weight-bold text-primary text-center">{{$blog_page->title}}</h2>
+                <p>{!! $blog_page->sub_title !!}</p>
                 <hr style="width: 40%; color: blue;">
             </div>
         </div>
@@ -16,6 +21,11 @@
         <div class="container ">
             <div class="row">
                 <div class="col-md-8 col-12 " >
+                    @if(count($blog) == 0)
+                        <p> No blog found</p>
+                    @else
+
+
                     @foreach($blog as $row)
                     <div class="box shadow  py-4">
                         <div class="blog-img">
@@ -32,6 +42,8 @@
                         @if($selected_category != 0 )
                    {!! $blog->links() !!}
                         @endif
+
+                    @endif
                 </div>
                 <div class="col-md-4 col-12  ">
                     <div class="box shadow  px-3 py-4">

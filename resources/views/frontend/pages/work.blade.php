@@ -4,15 +4,14 @@
     <section class="section-bg section_about mt-3">
         <div class="container " >
             <!-- centering title with text-center class -->
-            <h2 class="font-weight-bold text-primary text-center">Our Works</h2>
+            <h2 class="font-weight-bold text-primary text-center">{{$work_page->title}}</h2>
+            <p>{!! $work_page->sub_title !!}</p>
             <hr style="width: 40%; color: blue;">
         </div>
     </section>
 
     <section id="services">
         <div class="container py-3 ">
-
-
                 @foreach($work as $row)
                 @if(($loop->index+1)%2 == 1)
                        <div class="row shadow">

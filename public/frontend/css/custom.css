@@ -1,0 +1,5 @@
+@media (max-width: 768px) {
+    .section_about {
+        height: 150px !important;
+    }
+}
